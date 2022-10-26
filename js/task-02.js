@@ -9,7 +9,7 @@ const ingredients = [
 
 
 const listRef = document.querySelector('#ingredients')
-console.log(listRef);
+
 const elements = []
 ingredients.forEach(el=>{
   const elementRef = document.createElement('li')
@@ -17,7 +17,7 @@ ingredients.forEach(el=>{
   elementRef.classList='item'
 
   elements.push(elementRef)
-  console.log(elementRef);
+  
 })
-console.log(elements);
+
 listRef.append(...elements)
