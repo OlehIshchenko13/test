@@ -3,7 +3,7 @@ function getRandomHexColor() {
 }
 
 const refs = {
-  baseBox: document.querySelector('.box'),
+  baseBox: document.querySelector('#boxes'),
   controls: document.querySelector('#controls'),
   createBoxBTN: document.querySelector('[data-create]'),
   destroyBoxBTN: document.querySelector('[data-destroy]'),
@@ -14,16 +14,26 @@ refs.createBoxBTN.addEventListener('click',onCreateBox)
 
 function onCreateBox(e){
   const amountBox = refs.amount.value;
-  function makeBox (){
-    return`<div weight=30px;height=30px"></div>`
+   let size = 20;
+   const arrayBox =[];
+
+  function makeBox (size){
+    return`<div class="box" style="background-color: ${getRandomHexColor()}; width:${size}px; height: ${size}px;"></div>`
   }
-  const arrayBox =[]
+  
+  
   for (let i = 0; i < amountBox; i+=1) {
-    arrayBox.push(makeBox())
+    size += 10;
+    arrayBox.push(makeBox(size))
     
   }
-  refs.baseBox.insertAdjacentHTML('beforebegin',...arrayBox)
+  return refs.baseBox.insertAdjacentHTML('beforeend',arrayBox.join(''))
   
   
-  console.log(amountBox);
+  
+}
+refs.destroyBoxBTN.addEventListener('click',onDestroyBoxBTN)
+
+function onDestroyBoxBTN(e) {
+  refs.baseBox.innerHTML='';
 }
